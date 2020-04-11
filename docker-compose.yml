@@ -1,0 +1,20 @@
+version: "2"
+services:
+  webservice:
+    image: phpstorm/php-71-apache-xdebug-26
+    ports:
+      - "8881:80"
+    volumes:
+      - ./:/var/www/html
+    environment:
+      XDEBUG_CONFIG: remote_host=host.docker.internal
+
+  db:
+    image: mysql:5.7
+    ports:
+      - "32000:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
+

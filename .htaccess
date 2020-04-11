@@ -1,0 +1,23 @@
+Options All -Indexes
+RewriteEngine On
+
+
+RewriteBase /static/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^static$ static/$1 [L]
+
+
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?command=$1 [QSA,L]
+
+
+#RewriteRule ^static/(.*)$ $1 [QSA,L]
+
+
+
+# a2enmod rewrite
+# service apache2 restart
+
